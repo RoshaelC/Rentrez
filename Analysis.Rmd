@@ -14,28 +14,44 @@ MyData <- read.csv("./Sequences.csv")
 library(dplyr)
 ```
 
-
+### Properties of the Sequences
 ```{r}
 for (i in 1:nrow(MyData)){
   ID <- MyData[i, "Name"]
   Sequence <- MyData[i, "Sequence"]
   
-  print(paste("Sequence ID:", substr(ID, 1, 44))) # identify the ID of the sequence
+  print(paste("Sequence ID:", substr(ID, 2, 44))) # identify the ID of the sequence
   print(Sequence) # prints the nucleotide sequence
   print(table(strsplit(Sequence, ""))) # prints table with nucleotides and number of occurrences within the sequence
-  
-  df <- data.frame(table(strsplit(Sequence, ""))) # turns table into data frame for mathematical manipulation
-  gc_cont <- sum(df$Freq[2:3]) # total number of G & C nucleotides
-  nclt_total <- sum(df$Freq) # sum of all nucleotides
-  gc_percent <- round((gc_cont/nclt_total) * 100, digits = 2)
-  
-  print(paste("GC Content:", gc_percent, "%"))
 }
 ```
 
-![Image of Borrelia burgdorferi bacteria](https://www.bayarealyme.org/wp-content/uploads/2014/08/borrelia-burgdorferi.jpg)
+### Calculate GC Content
+```{r}
+df1 <- data.frame(table(strsplit(MyData$Sequence, "")[[1]]))
+gc_cont1 <- sum(df1$Freq[2:3]) # total number of G & C nucleotides
+nclt_total1<- sum(df1$Freq) # sum of all nucleotides
+gc_percent1 <- round((gc_cont1/nclt_total1) * 100, digits = 2)
 
-[Link to Wikipedia page on Borrelia burgdorferi](https://en.wikipedia.org/wiki/Borrelia_burgdorferi)
+df2 <- data.frame(table(strsplit(MyData$Sequence, "")[[2]])) 
+gc_cont2 <- sum(df2$Freq[2:3]) # total number of G & C nucleotides
+nclt_total2 <- sum(df2$Freq) # sum of all nucleotides
+gc_percent2 <- round((gc_cont2/nclt_total2) * 100, digits = 2)
+
+df3 <- data.frame(table(strsplit(MyData$Sequence, "")[[3]])) 
+gc_cont3 <- sum(df3$Freq[2:3]) # total number of G & C nucleotides
+nclt_total3 <- sum(df3$Freq) # sum of all nucleotides
+gc_percent3 <- round((gc_cont3/nclt_total3) * 100, digits = 2)
+  
+GC_Content <- data.frame(Sequence_ID = c("HQ433692.1", "HQ433694.1", "HQ433691.1"),
+                         GC_Content = c(gc_percent1, gc_percent2, gc_percent3))
+GC_Content
+```
+
+### *Borrelia burgorferi*
+![Image of *Borrelia burgdorferi* bacteria](https://www.bayarealyme.org/wp-content/uploads/2014/08/borrelia-burgdorferi.jpg)
+
+[Link to Wikipedia page on *Borrelia burgdorferi*](https://en.wikipedia.org/wiki/Borrelia_burgdorferi)
 
 
 
