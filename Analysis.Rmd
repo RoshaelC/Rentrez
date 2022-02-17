@@ -1,0 +1,43 @@
+---
+title: "Analysis.Rmd"
+author: "Roshael Chellappah (20103016)"
+date: "16/02/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+MyData <- read.csv("./Sequences.csv")
+library(dplyr)
+```
+
+
+```{r}
+for (i in 1:nrow(MyData)){
+  ID <- MyData[i, "Name"]
+  Sequence <- MyData[i, "Sequence"]
+  
+  print(paste("Sequence ID:", substr(ID, 1, 44))) # identify the ID of the sequence
+  print(Sequence) # prints the nucleotide sequence
+  print(table(strsplit(Sequence, ""))) # prints table with nucleotides and number of occurrences within the sequence
+  
+  df <- data.frame(table(strsplit(Sequence, ""))) # turns table into data frame for mathematical manipulation
+  gc_cont <- sum(df$Freq[2:3]) # total number of G & C nucleotides
+  nclt_total <- sum(df$Freq) # sum of all nucleotides
+  gc_percent <- round((gc_cont/nclt_total) * 100, digits = 2)
+  
+  print(paste("GC Content:", gc_percent, "%"))
+}
+```
+
+![Image of Borrelia burgdorferi bacteria](https://www.bayarealyme.org/wp-content/uploads/2014/08/borrelia-burgdorferi.jpg)
+
+[Link to Wikipedia page on Borrelia burgdorferi](https://en.wikipedia.org/wiki/Borrelia_burgdorferi)
+
+
+
+
+
