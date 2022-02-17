@@ -1,3 +1,4 @@
+# github repository: https://github.com/RoshaelC/Rentrez.git
 install.packages("rentrez")
 library("rentrez")
 

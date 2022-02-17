@@ -1,3 +1,5 @@
+# github repository: https://github.com/RoshaelC/Rentrez.git
+
 library("rentrez")
 CoV2 <- entrez_fetch(db = "nuccore", id = "NC_045512.2", rettype = "fasta")
 

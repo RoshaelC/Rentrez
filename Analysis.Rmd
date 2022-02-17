@@ -5,6 +5,8 @@ date: "16/02/2022"
 output: html_document
 ---
 
+Github repository: https://github.com/RoshaelC/Rentrez.git 
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
